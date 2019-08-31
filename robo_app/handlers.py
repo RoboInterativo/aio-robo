@@ -76,4 +76,4 @@ class Web(object):
         router.add_route('POST', '/login', self.login, name='login')
         router.add_route('GET', '/logout', self.logout, name='logout')
         router.add_route('GET', '/public', self.internal_page, name='public')
-        router.add_route('GET', '/protected', self.protected_page, name='protected')
+        router.add_route('GET', '/manage', self.protected_page, name='protected')
