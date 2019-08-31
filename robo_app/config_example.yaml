@@ -1,5 +1,4 @@
 #Keep in outside ../
-telegram_token: TOKEN
 postgres:
   database: aiohttpdemo_polls
   user: aiohttpdemo_user

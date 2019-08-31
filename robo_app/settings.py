@@ -4,7 +4,7 @@ from yaml import load, dump
 from yaml import Loader, Dumper
 
 base_dir = pathlib.Path(__file__).parent.parent
-config_path = base_dir / '../robocms.yaml'
+config_path = base_dir / '../robo.yaml'
 
 
 def get_config(path):
