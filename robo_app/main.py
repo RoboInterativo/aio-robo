@@ -15,9 +15,9 @@ from aiohttp.abc import AbstractAccessLogger
 from db_auth import DBAuthorizationPolicy
 from handlers import Web
 
-class AccessLogger(AbstractAccessLogger):
 
-    
+
+
 async def init(loop):
     redis_pool = await create_pool(('localhost', 6379))
     dbengine = await create_engine(user= config['postgres']['user'],
