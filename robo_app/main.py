@@ -27,7 +27,7 @@ async def init(loop):
 
     app = web.Application()
     app.dbengine = dbengine
-    app.logger=AccessLogger()
+    #app.logger=AccessLogger()
     setup_session(app, RedisStorage(redis_pool))
     setup_security(app,
                    SessionIdentityPolicy(),
