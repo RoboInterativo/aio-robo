@@ -17,10 +17,7 @@ from handlers import Web
 
 class AccessLogger(AbstractAccessLogger):
 
-    def log(self, request, response, time):
-        self.logger.info(f'{request.remote} '
-                         f'"{request.method} {request.path} '
-                         f'done in {time}s: {response.status}')
+    
 async def init(loop):
     redis_pool = await create_pool(('localhost', 6379))
     dbengine = await create_engine(user= config['postgres']['user'],
