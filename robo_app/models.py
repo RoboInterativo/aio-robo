@@ -50,7 +50,8 @@ bot_options = Table(
 
     # indices
     PrimaryKeyConstraint('id', name='bot_options_pkey'),
-    ForeignKeyConstraint(['bot_id'], [bots.c.id],     name='bot_option_fkey', ondelete='CASCADE'),
+    ForeignKeyConstraint(['bot_id'], [bots.c.id]
+                         ,     name='bot_option_fkey', ondelete='CASCADE'),
 
 )
 
