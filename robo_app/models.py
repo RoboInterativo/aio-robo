@@ -49,7 +49,7 @@ bot_options = Table(
     Column('perm_name', String(64), nullable=False),
 
     # indices
-    PrimaryKeyConstraint('id', name='bot_pkey'),
+    PrimaryKeyConstraint('id', name='bot_options_pkey'),
     ForeignKeyConstraint(['bot_id'], [bots.c.id],     name='bot_option_fkey', ondelete='CASCADE'),
 
 )
