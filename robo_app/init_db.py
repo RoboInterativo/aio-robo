@@ -11,7 +11,7 @@ DSN = "postgresql://{user}:{password}@{host}:{port}/{database}"
 
 def create_tables(engine):
     meta = MetaData()
-    meta.create_all(bind=engine, tables=[users, permissions, bots, bots_options])
+    meta.create_all(bind=engine, tables=[users, permissions, bots, bot_options])
 
 #def upgrade(migrate_engine):
 #    meta = MetaData(bind=migrate_engine)
