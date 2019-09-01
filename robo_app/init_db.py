@@ -2,7 +2,7 @@
 from sqlalchemy import create_engine, MetaData
 
 from settings import config
-from models import users, permissions, bots, bots_options
+from models import users, permissions, bots, bot_options
 from passlib.hash import sha256_crypt
 
 
