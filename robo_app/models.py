@@ -35,8 +35,8 @@ bots = Table(
     Column('id', Integer, nullable=False),
     Column('user_id', Integer, nullable=False),
     Column('telegram_token', String(128), nullable=False),
-    Column('bot_name', String(64), nullable=False
-    Column('webhook', String(256), nullable=False
+    Column('bot_name', String(64), nullable=False),
+    Column('webhook', String(256), nullable=False),
     # indices
     PrimaryKeyConstraint('id', name='bot_pkey'),
     ForeignKeyConstraint(['user_id'], [users.c.id],     name='user_bot_fkey', ondelete='CASCADE'),
