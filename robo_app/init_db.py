@@ -2,7 +2,8 @@
 from sqlalchemy import create_engine, MetaData
 
 from settings import config
-from models import users, permissions
+from models import users, permissions, bots, bots_options
+from passlib.hash import sha256_crypt
 
 
 DSN = "postgresql://{user}:{password}@{host}:{port}/{database}"
@@ -10,7 +11,7 @@ DSN = "postgresql://{user}:{password}@{host}:{port}/{database}"
 
 def create_tables(engine):
     meta = MetaData()
-    meta.create_all(bind=engine, tables=[users, permissions])
+    meta.create_all(bind=engine, tables=[users, permissions, bots, bots_options])
 
 #def upgrade(migrate_engine):
 #    meta = MetaData(bind=migrate_engine)
@@ -29,7 +30,7 @@ def sample_data(engine):
     conn.execute(users.insert(), [
         {'id': 1,
          'login': 'admin',
-         'passwd':'$5$rounds=535000$2kqN9fxCY6Xt5/pi$tVnh0xX87g/IsnOSuorZG608CZDFbWIWBr58ay6S4pD',
+         'passwd': sha256_crypt.hash('password'),
          'superuser': True,
          'disabled': False
          }
@@ -37,7 +38,7 @@ def sample_data(engine):
     conn.execute(users.insert(), [
         {'id': 2,
          'login': 'moderator',
-         'passwd': '$5$rounds=535000$2kqN9fxCY6Xt5/pi$tVnh0xX87g/IsnOSuorZG608CZDFbWIWBr58ay6S4pD',
+         'passwd': sha256_crypt.hash('password'),
          'superuser': False,
          'disabled': False
          }
@@ -46,7 +47,7 @@ def sample_data(engine):
     conn.execute(users.insert(), [
         {'id': 3,
          'login': 'user',
-         'passwd': '$5$rounds=535000$2kqN9fxCY6Xt5/pi$tVnh0xX87g/IsnOSuorZG608CZDFbWIWBr58ay6S4pD',
+         'passwd': sha256_crypt.hash('password'),
          'is_superuser': False,
          'disabled': False
          }
