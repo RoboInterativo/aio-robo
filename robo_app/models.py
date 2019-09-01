@@ -43,7 +43,7 @@ bots = Table(
 
 )
 bot_options = Table(
-    'bots', metadata,
+    'bot_options', metadata,
     Column('id', Integer, nullable=False),
     Column('bot_id', Integer, nullable=False),
     Column('perm_name', String(64), nullable=False),
