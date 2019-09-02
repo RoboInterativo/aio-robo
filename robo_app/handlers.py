@@ -80,7 +80,7 @@ class Web(object):
             'text': data['message']['text']
         }
         async with ClientSession() as session:
-            async with session.post(API_URL,
+            async with session.post(app.API_URL,
                                     data=json.dumps(message),
                                     headers=headers) as resp:
                 try:
