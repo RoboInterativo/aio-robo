@@ -91,7 +91,7 @@ class Web(object):
     def configure(self, app):
         router = app.router
         router.add_route('GET', '/', self.index, name='index')
-        router.add_route('POST', '/webhook, self.webhook, name= 'webhook')
+        router.add_route('POST', '/webhook', self.webhook, name= 'webhook')
         router.add_route('POST', '/login', self.login, name='login')
         router.add_route('GET', '/logout', self.logout, name='logout')
         router.add_route('GET', '/public', self.internal_page, name='public')
