@@ -69,7 +69,7 @@ class Web(object):
         await check_permission(request, 'protected')
         username = await authorized_userid(request)
         #print ( str(data))
-        return aiohttp_jinja2.render_template('base2.html', request, {'req': username})
+        return aiohttp_jinja2.render_template('base2.html', request, {'user_name': username})
         #response = web.Response(content_type='text/html', body=b'You are on protected page')
 
     async def webhook (self, request):
