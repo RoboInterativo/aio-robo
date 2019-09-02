@@ -104,4 +104,4 @@ class Web(object):
         router.add_route('GET', '/logout', self.logout, name='logout')
         router.add_route('GET', '/public', self.internal_page, name='public')
         router.add_route('GET', '/manage', self.admin_botlist_page, name='manage')
-        router.add_route('GET', '/options', self.admin_botdetail_page, name='options')
+        router.add_route('POST', '/options', self.admin_botdetail_page, name='options')
