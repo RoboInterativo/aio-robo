@@ -71,8 +71,8 @@ class Web(object):
         #print ( str(data))
         return aiohttp_jinja2.render_template('base3.html', request, {'user_name': username})
         #response = web.Response(content_type='text/html', body=b'You are on protected page')
-#bot_detail_page
-    async def admin_bot_detail_page(self, request):
+    #bot_detail_page
+    async def admin_botdetail_page(self, request):
         #await check_permission(request, 'protected')
         #username = await authorized_userid(request)
         # print ( str(data))
@@ -104,4 +104,4 @@ class Web(object):
         router.add_route('GET', '/logout', self.logout, name='logout')
         router.add_route('GET', '/public', self.internal_page, name='public')
         router.add_route('GET', '/manage', self.admin_botlist_page, name='protected')
-        router.add_route('GET', '/options', self.admin_bot_detail_page, name='protected')
+        router.add_route('GET', '/options', self.admin_botdetail_page, name='protected')
