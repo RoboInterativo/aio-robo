@@ -26,6 +26,7 @@ async def init(loop):
                                    host=config['postgres']['host'])
 
     app = web.Application()
+    app.telegram_token=config['telegram_token']
     app.dbengine = dbengine
     #app.logger=AccessLogger()
     setup_session(app, RedisStorage(redis_pool))
