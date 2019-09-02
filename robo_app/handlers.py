@@ -80,7 +80,7 @@ class Web(object):
             'text': data['message']['text']
         }
         async with ClientSession() as session:
-            async with session.post(app.API_URL % app.telegram_token,
+            async with session.post(request.app.API_URL % request.app.telegram_token,
                                     data=json.dumps(message),
                                     headers=headers) as resp:
                 try:
