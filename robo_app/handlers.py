@@ -67,8 +67,8 @@ class Web(object):
 
     async def protected_page(self, request):
         await check_permission(request, 'protected')
-        data = await request.json()
-        print ( str(data)) 
+        data = await request.login
+        #print ( str(data))
         return aiohttp_jinja2.render_template('base2.html', request, {'req': data})
         #response = web.Response(content_type='text/html', body=b'You are on protected page')
 
