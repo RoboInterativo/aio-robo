@@ -69,7 +69,6 @@ class Web(object):
         await check_permission(request, 'protected')
         return aiohttp_jinja2.render_template('base2.html', request, {})
         #response = web.Response(content_type='text/html', body=b'You are on protected page')
-        return response
 
     def configure(self, app):
         router = app.router
