@@ -70,7 +70,7 @@ class Web(object):
         return aiohttp_jinja2.render_template('base2.html', request, {})
         #response = web.Response(content_type='text/html', body=b'You are on protected page')
 
-    async def webhook(request):
+    async def webhook (self, request):
         data = await request.json()
         headers = {
             'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ class Web(object):
     def configure(self, app):
         router = app.router
         router.add_route('GET', '/', self.index, name='index')
-        router.add_route('GET', '/webhook, self.index, name='webhook')
+        router.add_route('POST', '/webhook, self.webhook, name= 'webhook')
         router.add_route('POST', '/login', self.login, name='login')
         router.add_route('GET', '/logout', self.logout, name='logout')
         router.add_route('GET', '/public', self.internal_page, name='public')
