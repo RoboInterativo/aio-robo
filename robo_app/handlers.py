@@ -1,6 +1,6 @@
 from textwrap import dedent
 
-from aiohttp import web
+from aiohttp import web , ClientSession
 
 from aiohttp_security import (
     remember, forget, authorized_userid,
@@ -79,7 +79,7 @@ class Web(object):
             'chat_id': data['message']['chat']['id'],
             'text': data['message']['text']
         }
-        async with aiohttp.ClientSession() as session:
+        async with ClientSession() as session:
             async with session.post(API_URL,
                                     data=json.dumps(message),
                                     headers=headers) as resp:
