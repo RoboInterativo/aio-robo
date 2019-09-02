@@ -69,11 +69,29 @@ class Web(object):
         await check_permission(request, 'protected')
         return aiohttp_jinja2.render_template('base2.html', request, {})
         #response = web.Response(content_type='text/html', body=b'You are on protected page')
-    def webhook self, request):
-    return
+
+    async def webhook(request):
+        data = await request.json()
+        headers = {
+            'Content-Type': 'application/json'
+        }
+        message = {
+            'chat_id': data['message']['chat']['id'],
+            'text': data['message']['text']
+        }
+        async with aiohttp.ClientSession() as session:
+            async with session.post(API_URL,
+                                    data=json.dumps(message),
+                                    headers=headers) as resp:
+                try:
+                    assert resp.status == 200
+                except:
+                    return web.Response(status=500)
+        return web.Response(status=200)
     def configure(self, app):
         router = app.router
         router.add_route('GET', '/', self.index, name='index')
+        router.add_route('GET', '/webhook, self.index, name='webhook')
         router.add_route('POST', '/login', self.login, name='login')
         router.add_route('GET', '/logout', self.logout, name='logout')
         router.add_route('GET', '/public', self.internal_page, name='public')
