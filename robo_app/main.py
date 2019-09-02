@@ -14,7 +14,7 @@ from aiohttp.abc import AbstractAccessLogger
 
 from db_auth import DBAuthorizationPolicy
 from handlers import Web
-
+API_URL = 'https://api.telegram.org/bot%s/sendMessage'
 
 
 
