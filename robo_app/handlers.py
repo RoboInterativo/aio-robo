@@ -65,12 +65,18 @@ class Web(object):
                                 body=b'This page is visible for all registered users')
         return response
 
-    async def protected_page(self, request):
+    async def admin_botlist_page(self, request):
         await check_permission(request, 'protected')
         username = await authorized_userid(request)
         #print ( str(data))
-        return aiohttp_jinja2.render_template('base2.html', request, {'user_name': username})
+        return aiohttp_jinja2.render_template('base3.html', request, {'user_name': username})
         #response = web.Response(content_type='text/html', body=b'You are on protected page')
+#bot_detail_page
+    async def bot_detail_page(self, request):
+        #await check_permission(request, 'protected')
+        #username = await authorized_userid(request)
+        # print ( str(data))
+        return aiohttp_jinja2.render_template('base2.html', request, {'user_name': username})
 
     async def webhook (self, request):
         data = await request.json()
@@ -97,4 +103,5 @@ class Web(object):
         router.add_route('POST', '/login', self.login, name='login')
         router.add_route('GET', '/logout', self.logout, name='logout')
         router.add_route('GET', '/public', self.internal_page, name='public')
-        router.add_route('GET', '/manage', self.protected_page, name='protected')
+        router.add_route('GET', '/manage', self.admin_botlist_page, name='protected')
+        router.add_route('GET', '/options', self.admin_bot_detail_page, name='protected')
