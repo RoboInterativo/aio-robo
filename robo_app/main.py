@@ -41,7 +41,7 @@ async def init(loop):
                          loader=jinja2.FileSystemLoader(str(base_dir / 'robo_app' / 'templates')))
 
     handler = app.make_handler()
-    srv = await loop.create_server(handler, '127.0.0.1', 8080)
+    srv = await loop.create_server(handler, '127.0.0.1', 8082)
     print('Server started at http://127.0.0.1:8082')
 
 
