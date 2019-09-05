@@ -42,7 +42,7 @@ async def init(loop):
 
     handler = app.make_handler()
     srv = await loop.create_server(handler, '127.0.0.1', 8080)
-    print('Server started at http://127.0.0.1:8080')
+    print('Server started at http://127.0.0.1:8082')
 
 
     return srv, app, handler
