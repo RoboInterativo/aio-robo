@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated-on="2019-09-06T19:52:48+00:00" -->
+<!-- generator="RoboCMS by robointerativo.ru by Aleksey Shilo" -->
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+	xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+		http://www.google.com/schemas/sitemap-image/1.1
+		http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+	<url>
+		<loc>https://robointerativo.ru/about/</loc>
+		<priority>0.1</priority>
+		<lastmod>2019-09-06T16:52:36+00:00</lastmod>
+
+ 	</url>
+
+
+</urlset>
