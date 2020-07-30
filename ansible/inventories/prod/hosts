@@ -1,0 +1,18 @@
+[all]
+#localhost ansible_host=127.0.0.1
+localhost              ansible_connection=local 
+[osp]
+osp_1 ansible_host=10.9.54.34 ansible_user=root
+osp_2 ansible_host=10.9.38.34 ansible_user=root
+osp_3 ansible_host=10.9.50.34 ansible_user=root rdb_path=/home/fssp/db/db
+osp_4 ansible_host=10.9.40.34 ansible_user=root
+osp_5 ansible_host=10.9.200.34 ansible_user=root
+osp_6 ansible_host=10.9.36.34 ansible_user=root
+osp_7 ansible_host=10.9.42.34 ansible_user=root
+osp_8 ansible_host=10.9.44.34 ansible_user=root
+osp_9 ansible_host=10.9.46.34 ansible_user=root rdb_path=/home
+osp_10 ansible_host=10.9.48.34 ansible_user=root
+osp_11 ansible_host=10.9.52.34 ansible_user=root
+osp_12 ansible_host=10.9.62.34 ansible_user=root
+
+

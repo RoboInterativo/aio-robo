@@ -1,0 +1,31 @@
+### BEGIN INIT INFO
+# Provides:          fssp_views_daemon
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: fssp_views_daemon
+# Description:       fssp_views_daemon 
+### END INIT INFO
+
+[Unit]
+Description=fssp_views_daemon
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+#User=consul
+#Group=consul
+PIDFile=/var/run/fssp_views/daemon.pid
+PermissionsStartOnly=true
+ExecStartPre=-/bin/mkdir -p /var/run/fssp_views/
+#ExecStartPre=/bin/chown -R consul:consul /var/run/consul
+ExecStart= /home/fssp_views/fssp_mon/update.py /var/run/fssp_views/daemon.pid
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+KillSignal=SIGTERM
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target

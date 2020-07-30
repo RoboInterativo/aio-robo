@@ -1,0 +1,20 @@
+- hosts: localhost
+  tasks:
+  - name: Download nodejs
+    get_url:
+      url: https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz
+      dest: /tmp
+      use_proxy: "{{ use_p  |default('no')}}"
+      mode: '0440'
+    tags: [all]
+
+  - name: install nodejs
+    unarchive:
+       src: /tmp/node-v12.16.1-linux-x64.tar.xz
+       dest:  '/tmp/'
+       remote_src: yes
+  - name: install nodejs2
+    copy:
+       src: /tmp/node-v12.16.1-linux-x64/
+       dest:  '/usr'
+    tags: [all]

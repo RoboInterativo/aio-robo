@@ -1,0 +1,74 @@
+- hosts: localhost
+  tasks:
+ #install depends packages
+
+ #install apache2
+ #generate apache config
+ #install wsgi_py apache mod
+ #enable modules  
+ #create mysqldb
+ #create fssp_views_setting 
+  #redis
+#  - name: Install the package redis
+#    apt:
+#      name: redis
+#    tags: [all] 
+    
+#  - name: install python modules 
+#    shell: 'cd {{ path_to_home }} && python3 -m pip install -r ./requirements.txt'
+#    tags: [all]
+  
+  - name: Download nodejs
+    get_url:
+      url: https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.xz  
+      dest: /tmp
+      use_proxy: "{{ use_p  |default('no')}}"
+      mode: '0440'
+    tags: [all]
+    
+  - name: install nodejs
+    unarchive:
+       src: /tmp/node-v12.16.1-linux-x64.tar.xz
+       dest:  '/usr'
+       remote_src: yes
+    tags: [all]
+
+#  - name: create celery conf dir
+#    file:
+#      path: '{{ item }}' 
+#      state: directory
+#    with_items: ['/etc/conf.d' , '/opt/celery', '/var/log/celery', '/var/run/celery' ]
+#    tags: [ all, celery ]
+   
+#  - name: create celery logfile
+#    file:
+#      path: '{{ item }}' 
+#      state: touch
+#    with_items: ['/var/log/celery/w1.log' , '/var/run/celery/w1.pid']
+#    tags: [ all, celery ]
+     
+#  - name: create celery service
+#    template: 
+#      src: 'celery.service'
+#      dest: '/etc/systemd/system/celery.service'
+#    tags: [all, celery ]
+
+#  - name: create celery conf
+#    template: 
+#      src: celery
+#      dest: '/etc/conf.d/celery'
+#    tags: [all, celery  ]
+    
+#  - name: reload service httpd, in all cases
+#    systemd:
+#       name: '{{ item }}'
+#       state: stopped
+#    with_items: ['celery']     
+#    tags: [all, celery  ]
+    
+#  - name: reload service httpd, in all cases
+#    systemd:
+#       name: '{{ item }}'
+#       state: started
+#    with_items: ['celery']   
+#    tags: [all, celery  ]

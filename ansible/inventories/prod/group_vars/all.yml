@@ -1,0 +1,8 @@
+path_to_front: /home/fssp/fssp_views/front
+path_to_home: /home/fssp/fssp_views
+path_to_swagger: /home/fssp/fssp_views/swagger
+path_to_www: /var/www/fssp
+path_to_config: /home/fssp/fssp_views_setttings
+use_p: yes
+rdb_path: /home/fssp/db
+web_server: apache2

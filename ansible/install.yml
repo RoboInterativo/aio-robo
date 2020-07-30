@@ -1,0 +1,95 @@
+- hosts: localhost
+  tasks:
+  - name: install
+    shell: 'cd {{ path_to_front }} && npm install'
+ # - name: build swagger
+ #   shell: 'cd {{ path_to_swagger }} && npm install'
+    
+  - name: build front
+    shell: 'cd {{ path_to_front }} && npm run build'
+    
+ # - name: build swagger
+ #   shell: 'cd {{ path_to_swagger }} && npm run build'
+    
+#  - name: migrate 
+#    shell: 'cd {{ path_to_home }} && python3 ./manage.py makemigrations'
+    
+#  - name: migrate 
+#    shell: 'cd {{ path_to_home }} && python3 ./manage.py migrate'
+    
+  - name: reload service httpd, in all cases
+    systemd:
+      name: '{{ item }}'
+      state: stopped
+    with_items: ['{{ web_server }}']
+    
+  - name: reload service httpd, in all cases
+    file:
+      path: '{{ path_to_www }}'
+      state: absent
+  - name: reload service httpd, in all cases
+    file:
+      path: '{{ path_to_www }}' 
+      state: directory
+ 
+  - name: Delete alld
+    file:
+      state: absent
+      path: '{{ item }}'
+    with_items: ['/tmp/front.tgz','/tmp/api.tgz']
+      
+  - name: Compress directory /path/to/foo/ into /path/to/foo.tgz
+    archive:
+      path: '{{  path_to_front }}/build/static'
+      dest: /tmp/front.tgz
+      
+#  - name: Compress directory /path/to/foo/ into /path/to/foo.tgz
+#    archive:
+#      path: '{{  path_to_swagger }}/build/.'
+#      dest: /tmp/swagger.tgz 
+    
+            
+  - name: Compress directory /path/to/foo/ into /path/to/foo.tgz
+    archive:
+      path: '{{  path_to_front }}/../api'
+      dest: /tmp/api.tgz 
+
+  - name: copy front 1
+    copy:
+      src: '{{  path_to_front }}/build/index.html'
+      dest:  '{{ path_to_www }}'
+      remote_src: yes
+      
+
+    
+       
+  - name: copy front 2
+    unarchive:
+      src: /tmp/front.tgz  
+      dest:  '{{ path_to_www }}'
+      remote_src: yes
+  
+  - name: copy front 1.2 head_left.gif
+    copy:
+      src: '{{  path_to_front }}/build/head_left.gif'
+      dest:  '{{ path_to_www }}/static'
+      remote_src: yes
+      
+  - name: copy
+    unarchive:
+      src: /tmp/api.tgz 
+      dest:  '{{ path_to_www }}'
+      remote_src: yes
+      
+#  - name: copy
+#    unarchive:
+#      src: /tmp/swagger.tgz 
+#      dest:  '{{ path_to_www }}/api'
+#      remote_src: yes
+      
+  - name: reload service httpd, in all cases
+    systemd:
+      name: '{{ item }}'
+      state: started
+    with_items: ['{{ web_server }}']
+      

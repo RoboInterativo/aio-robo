@@ -1,0 +1,7 @@
+path_to_front: /home/fssp_views/front
+path_to_home: /home/fssp_views
+path_to_swagger: /home/fssp_views/swagger
+path_to_www: /var/www/portal
+path_to_config: /home/fssp_views_setttings
+rdb_path: /home/db
+web_server: nginx

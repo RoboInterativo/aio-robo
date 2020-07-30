@@ -1,0 +1,14 @@
+{ "cpu": "{{ ansible_processor [2]}}",
+  "cpu_core":"{{ ansible_processor_cores }}",
+  "mem_total": "{{ ansible_memtotal_mb }}",
+{% for item in mount %}
+{% if item.mount == '/' %}
+  "root_size_available": "{{ item.size_available }}",
+  "root_size_total": "{{ item.size_total }}",
+{% endif %}
+{% if item.mount ==  rdb_path  %}
+  "rdb_size_available": "{{ item.size_available }}",
+  "rdb_size_total": "{{ item.size_total }}"
+{% endif %}
+{% endfor %}
+}
