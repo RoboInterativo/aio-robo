@@ -69,11 +69,11 @@
       dest:  '{{ path_to_www }}'
       remote_src: yes
   
-  - name: copy front 1.2 head_left.gif
-    copy:
-      src: '{{  path_to_front }}/build/head_left.gif'
-      dest:  '{{ path_to_www }}/static'
-      remote_src: yes
+ # - name: copy front 1.2 head_left.gif
+ #   copy:
+ #     src: '{{  path_to_front }}/build/head_left.gif'
+ #     dest:  '{{ path_to_www }}/static'
+ #     remote_src: yes
       
   - name: copy
     unarchive:
