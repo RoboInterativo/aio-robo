@@ -1,1 +1,1 @@
-git add --all && git commit -m 'Fix' && git push origin php
+git add --all && git commit -m 'Fix' && git push 
