@@ -75,11 +75,11 @@
  #     dest:  '{{ path_to_www }}/static'
  #     remote_src: yes
       
-  - name: copy
-    unarchive:
-      src: /tmp/api.tgz 
-      dest:  '{{ path_to_www }}'
-      remote_src: yes
+#  - name: copy
+#    unarchive:
+#      src: /tmp/api.tgz 
+#      dest:  '{{ path_to_www }}'
+#      remote_src: yes
       
 #  - name: copy
 #    unarchive:
