@@ -54,7 +54,7 @@ class Web(object):
         
         #login = form.get('login')
         #password = form.get('password')
-        #bengine = request.app.dbengine
+        dbengine = request.app.dbengine
         if await check_credentials(dbengine, login, password):
             await remember(request, response, login)
             raise response
