@@ -46,7 +46,7 @@ class Web(object):
         #return response
 
     async def login(self, request):
-		data = await request.json()
+        data = await request.json()
         response = web.HTTPFound('/')
         #form = await request.post()
         login=data['login']
