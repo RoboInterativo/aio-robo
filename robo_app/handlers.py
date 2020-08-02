@@ -46,11 +46,15 @@ class Web(object):
         #return response
 
     async def login(self, request):
+		data = await request.json()
         response = web.HTTPFound('/')
-        form = await request.post()
-        login = form.get('login')
-        password = form.get('password')
-        dbengine = request.app.dbengine
+        #form = await request.post()
+        login=data['login']
+        password=data['password']
+        
+        #login = form.get('login')
+        #password = form.get('password')
+        #bengine = request.app.dbengine
         if await check_credentials(dbengine, login, password):
             await remember(request, response, login)
             raise response
