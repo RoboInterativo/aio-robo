@@ -32,7 +32,7 @@ async def init(loop):
     app.telegram_token=config['telegram_token']
     app.API_URL= API_URL
     app.dbengine = dbengine
-    #app.logger=AccessLogger()
+    app.logger=AccessLogger()
     setup_session(app, RedisStorage(redis_pool))
     setup_security(app,
                    SessionIdentityPolicy(),
