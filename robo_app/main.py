@@ -11,10 +11,13 @@ from settings import config, base_dir
 import jinja2
 import aiohttp_jinja2
 from aiohttp.abc import AbstractAccessLogger
+import pathlib
 
 from db_auth import DBAuthorizationPolicy
 from handlers import Web
 API_URL = 'https://api.telegram.org/bot%s/sendMessage'
+PROJ_ROOT = pathlib.Path(__file__).parent.parent
+TEMPLATES_ROOT = pathlib.Path(__file__).parent / 'build'
 
 
 
@@ -37,8 +40,10 @@ async def init(loop):
     web_handlers = Web()
     web_handlers.configure(app)
 
-    aiohttp_jinja2.setup(app,
-                         loader=jinja2.FileSystemLoader(str(base_dir / 'robo_app' / 'templates')))
+    #aiohttp_jinja2.setup(app,
+    #                     loader=jinja2.FileSystemLoader(str(base_dir / 'robo_app' / 'templates')))
+    aiohttp_jinja2.setup(
+        app, loader=jinja2.FileSystemLoader(str(TEMPLATES_ROOT)))
 
     handler = app.make_handler()
     srv = await loop.create_server(handler, '127.0.0.1', 8082)
