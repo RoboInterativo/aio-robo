@@ -10,7 +10,9 @@ from aioredis import create_pool
 from settings import config, base_dir
 import jinja2
 import aiohttp_jinja2
-from aiohttp.abc import AbstractAccessLogger
+
+#from aiohttp.abc import AbstractAccessLogger
+import logging
 import pathlib
 
 from db_auth import DBAuthorizationPolicy
@@ -32,7 +34,7 @@ async def init(loop):
     app.telegram_token=config['telegram_token']
     app.API_URL= API_URL
     app.dbengine = dbengine
-    app.logger=AccessLogger()
+    #app.logger=AccessLogger()
     setup_session(app, RedisStorage(redis_pool))
     setup_security(app,
                    SessionIdentityPolicy(),
@@ -67,6 +69,8 @@ async def finalize(srv, app, handler):
 
 
 def main():
+	# init logging
+    logging.basicConfig(level=logging.DEBUG)
     loop = asyncio.get_event_loop()
     srv, app, handler = loop.run_until_complete(init(loop))
     try:
