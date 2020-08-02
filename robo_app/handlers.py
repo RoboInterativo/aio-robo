@@ -37,7 +37,7 @@ class Web(object):
         else:
             template = self.index_template.format(message='You need to login')
             message = 'You need to login'
-        return aiohttp_jinja2.render_template('/home/aio-robo/front/build/index.html', request, {'message': message})
+        return aiohttp_jinja2.render_template('../front/build/index.html', request, {'message': message})
         #response = web.Response(content_type='text/html', body=(template.encode()))
         #return response
 
