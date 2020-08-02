@@ -29,7 +29,7 @@ class Web(object):
 
 
     
-    @aiohttp_jinja2.template('../front/build/index.html')
+    @aiohttp_jinja2.template('index.html')
     async def index(self, request):
         return {}
     #async def index(self, request):
