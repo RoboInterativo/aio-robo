@@ -10,6 +10,15 @@ from aiohttp_security import (
 from db_auth import check_credentials
 import aiohttp_jinja2
 
+async def authorize(request, username, password):
+    autz_policy = request.app.get(AUTZ_KEY)
+    assert autz_policy, "aiohttp_security should inited first"
+    is_user = await autz_policy.check_credential(username, password)
+    if not is_user:
+        msg = "Wrong username or password"
+        raise JsonForbiddenError(msg)
+    return is_user
+
 class Web(object):
     index_template = dedent("""
         <!doctype html>
