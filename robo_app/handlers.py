@@ -44,8 +44,21 @@ class Web(object):
     #    return aiohttp_jinja2.render_template('../front/build/index.html', request, {'message': message})
         #response = web.Response(content_type='text/html', body=(template.encode()))
         #return response
-
     async def login(self, request):
+        raw_payload = await request.read()
+        payload = raw_payload.decode(encoding='UTF-8')
+        parsed = json.loads(payload)
+        data = validate_payload(raw_payload, LoginForm)
+        await authorize(request, data['username'], data['password'])
+
+        router = request.app.router
+        location = router["admin.index"].url_for().human_repr()
+        payload = {"location": location}
+        response = json_response(payload)
+        await remember(request, response, data['username'])
+        return response
+
+    async def login2(self, request):
         data = await request.json()
         response = web.HTTPFound('/')
         #form = await request.post()
