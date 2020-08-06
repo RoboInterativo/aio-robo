@@ -47,12 +47,12 @@ class Web(object):
     async def login(self, request):
         raw_payload = await request.read()
         payload = raw_payload.decode(encoding='UTF-8')
-        parsed = json.loads(payload)
-        data = validate_payload(raw_payload, LoginForm)
+        data = json.loads(payload)
+        #data = validate_payload(raw_payload, LoginForm)
         await authorize(request, data['username'], data['password'])
 
         router = request.app.router
-        location = router["admin.index"].url_for().human_repr()
+        location = router["index"].url_for().human_repr()
         payload = {"location": location}
         response = json_response(payload)
         await remember(request, response, data['username'])
