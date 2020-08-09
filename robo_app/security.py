@@ -11,6 +11,30 @@ from aiohttp_security import permits
 from aiohttp_security.api import AUTZ_KEY
 
 from exceptions import JsonForbiddenError
+
+__all__ = ["Permissions", "require", "authorize"]
+
+
+class Permissions(str, Enum):
+    view = "aiohttp_admin.view"
+    edit = "aiohttp_admin.edit"
+    add = "aiohttp_admin.add"
+    delete = "aiohttp_admin.delete"
+
+
+class AdminAbstractAuthorizationPolicy(AbstractAuthorizationPolicy):
+
+    @abstractmethod
+    async def check_credential(self, identity, password):  # pragma: no cover
+        pass
+
+
+async def require(request, permission):
+    has_perm = await permits(request, permission)
+    if not has_perm:
+        msg = 'User has no permission {}'.format(permission)
+        raise JsonForbiddenError(msg)
+
 async def authorize(request, username, password):
     autz_policy = request.app.get(AUTZ_KEY)
     assert autz_policy, "aiohttp_security should inited first"
