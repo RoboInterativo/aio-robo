@@ -110,7 +110,7 @@ class App extends React.Component {
 	   
       this.handleClose();
      if (! this.state.loaded5) {
-      handleSnackOpen()
+      this.handleSnackOpen()
      } 
     };
     handleLoginChange (event) {
