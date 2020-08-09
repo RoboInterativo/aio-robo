@@ -10,7 +10,8 @@ from aiohttp_security import AbstractIdentityPolicy
 from aiohttp_security import permits
 from aiohttp_security.api import AUTZ_KEY
 
-from exceptions import JsonForbiddenError
+from .exceptions import JsonForbiddenError
+
 
 __all__ = ["Permissions", "require", "authorize"]
 
@@ -35,6 +36,7 @@ async def require(request, permission):
         msg = 'User has no permission {}'.format(permission)
         raise JsonForbiddenError(msg)
 
+
 async def authorize(request, username, password):
     autz_policy = request.app.get(AUTZ_KEY)
     assert autz_policy, "aiohttp_security should inited first"
@@ -43,6 +45,7 @@ async def authorize(request, username, password):
         msg = "Wrong username or password"
         raise JsonForbiddenError(msg)
     return is_user
+
 
 class DummyAuthPolicy(AdminAbstractAuthorizationPolicy):
 
