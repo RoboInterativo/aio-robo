@@ -15,7 +15,13 @@ import aiohttp_jinja2
 import logging
 import pathlib
 
-#from db_auth import DBAuthorizationPolicy
+from db_auth import DBAuthorizationPolicy
+from aiohttp_security import (
+    remember, forget, authorized_userid,
+    check_permission, check_authorized,
+)
+
+
 
 
 from handlers import Web
