@@ -109,7 +109,8 @@ class App extends React.Component {
 		 
 	   
       this.handleClose();
-     if (! this.state.loaded5) {
+     if ( this.state.loaded5) {
+		   if ( ! this.state.result.is_user) {
       this.handleSnackOpen()
      } 
     };
