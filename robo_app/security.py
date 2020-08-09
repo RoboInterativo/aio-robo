@@ -10,7 +10,7 @@ from aiohttp_security import AbstractIdentityPolicy
 from aiohttp_security import permits
 from aiohttp_security.api import AUTZ_KEY
 
-from .exceptions import JsonForbiddenError
+from exceptions import JsonForbiddenError
 
 
 __all__ = ["Permissions", "require", "authorize"]
