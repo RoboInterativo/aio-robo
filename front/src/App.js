@@ -50,7 +50,7 @@ class App extends React.Component {
             password:'',
             result: [],
             dialog_visible:false,
-            login_failed_snack__visible: false
+            login_failed_snack_visible: false
         
             
     };
@@ -63,7 +63,7 @@ class App extends React.Component {
     this.handlePassChange = this.handlePassChange.bind(this);
      
     this.handleSnackClose = this.handleSnackClose.bind(this);
-    this.handleSnackClose = this.handleSnackOpen.bind(this);
+    this.handleSnackOpen = this.handleSnackOpen.bind(this);
      
      
  }
@@ -77,11 +77,11 @@ class App extends React.Component {
                        dialog_visible: false});
     };
     handleSnackOpen() {
-      this.setState({login_failed_snack__visible: true}) ;
+      this.setState({login_failed_snack_visible: true}) ;
     };
     
      handleSnackClose () {
-     this.setState({login_failed_snack__visible: false}) ;
+     this.setState({login_failed_snack_visible: false}) ;
     };
      handleLogin () {
 	     let url='/auth' ;
@@ -165,7 +165,7 @@ return (
             <div>
      <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={this.login_failed_snack__visible}
+        open={this.login_failed_snack_visible}
         onClose={this.handleSnackClose}
         message="I love snacks"
         //key={vertical + horizontal}
