@@ -15,7 +15,9 @@ import aiohttp_jinja2
 import logging
 import pathlib
 
-from db_auth import DBAuthorizationPolicy
+#from db_auth import DBAuthorizationPolicy
+from aiohttp_admin.security import DummyAuthPolicy, 
+
 from handlers import Web
 API_URL = 'https://api.telegram.org/bot%s/sendMessage'
 PROJ_ROOT = pathlib.Path(__file__).parent.parent
