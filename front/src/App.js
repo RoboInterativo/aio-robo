@@ -35,6 +35,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Icon from '@material-ui/core/Icon';
+import Snackbar from '@material-ui/core/Snackbar';
 // End Import  ==========================================================================
 
 
@@ -48,7 +49,8 @@ class App extends React.Component {
             login_name:'',
             password:'',
             result: [],
-            dialog_visible:false
+            dialog_visible:false,
+            login_failed_snack__visible: false
         
             
     };
@@ -56,9 +58,13 @@ class App extends React.Component {
  
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
-     this.handleLogin = this.handleLogin.bind(this);
-     this.handleLoginChange = this.handleLoginChange.bind(this);
-     this.handlePassChange = this.handlePassChange.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLoginChange = this.handleLoginChange.bind(this);
+    this.handlePassChange = this.handlePassChange.bind(this);
+     
+    this.handleSnackClose = this.handleSnackClose.bind(this);
+    this.handleSnackClose = this.handleSnackOpen.bind(this);
+     
      
  }
     handleOpen() {
@@ -69,6 +75,13 @@ class App extends React.Component {
       this.setState({ login_name:'',
                        password:'',
                        dialog_visible: false});
+    };
+    handleSnackOpen() {
+      this.setState({login_failed_snack__visible: true}) ;
+    };
+    
+     handleSnackClose () {
+     this.setState({login_failed_snack__visible: false}) ;
     };
      handleLogin () {
 	     let url='/auth' ;
@@ -94,8 +107,11 @@ class App extends React.Component {
 
       })
 		 
-		 
+	   
       this.handleClose();
+     if (! this.state.loaded5) {
+      handleSnackOpen()
+     } 
     };
     handleLoginChange (event) {
         this.setState({login_name: event.target.value});
@@ -146,6 +162,14 @@ let content=
 return (
    <div>
             <div>
+     <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={this.login_failed_snack__visible}
+        onClose={this.handleSnackClose}
+        message="I love snacks"
+        //key={vertical + horizontal}
+      />
+    
        <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.dialog_visible}>
        <DialogTitle id="simple-dialog-title">Авторизация</DialogTitle>
        
