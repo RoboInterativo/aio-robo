@@ -58,9 +58,10 @@ class Web(object):
         dbengine = request.app.dbengine
         router = request.app.router
         location = router["index"].url_for().human_repr()
-        payload = {"location": location}
-        response = web.json_response(payload)
         is_user=await check_credentials(dbengine, data['login'], data['password'] )
+        payload = {"location": location, "is_user":is_user}
+        response = web.json_response(payload)
+      
         await remember(request, response, data['login'])
         
         return response
