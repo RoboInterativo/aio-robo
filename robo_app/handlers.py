@@ -60,8 +60,9 @@ class Web(object):
         location = router["index"].url_for().human_repr()
         payload = {"location": location}
         response = json_response(payload)
-        is_user=await check_credentials(dbengine, login, password
+        is_user=await check_credentials(dbengine, login, password )
         await remember(request, response, data['login'])
+        
         return response
 
     async def login2(self, request):
