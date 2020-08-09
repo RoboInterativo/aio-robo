@@ -2,6 +2,6 @@ path_to_front: /home/aio-robo/front
 path_to_home: /home/aio-robo
 path_to_swagger: /home/fssp_views/swagger
 path_to_www: /var/www/aio-robo
-path_to_build:/home/aio-robo/robo_app/build
+path_to_build: /home/aio-robo/robo_app/build
 path_to_config: /home/aio-robo-settings
 web_server: nginx
