@@ -10,7 +10,7 @@ from security import *
 #    check_permission, check_authorized,
 #)
 
-from db_auth import check_credentials
+#from db_auth import check_credentials
 import aiohttp_jinja2
 
 
