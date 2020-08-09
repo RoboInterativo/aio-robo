@@ -3,7 +3,7 @@ import json
 from aiohttp import web , ClientSession
 from aiohttp_security.api import AUTZ_KEY
 #from aiohttp_security import remember, forget
-from security import *
+
 
 from aiohttp_security import (
     remember, forget, authorized_userid,
@@ -54,12 +54,13 @@ class Web(object):
         payload = raw_payload.decode(encoding='UTF-8')
         data = json.loads(payload)
         #data = validate_payload(raw_payload, LoginForm)
-        await authorize(request, data['login'], data['password'])
-
+        #await authorize(request, data['login'], data['password'])
+        dbengine = request.app.dbengine
         router = request.app.router
         location = router["index"].url_for().human_repr()
         payload = {"location": location}
         response = json_response(payload)
+        is_user=await check_credentials(dbengine, login, password
         await remember(request, response, data['login'])
         return response
 
