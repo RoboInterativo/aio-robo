@@ -166,7 +166,7 @@ return (
      if ( this.state.loaded5) {
      <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={this.state.dialog_visible}
+        open={this.state.login_failed_snack_visible}
         onClose={this.handleSnackClose}
         message="I love snacks"
         //key={vertical + horizontal}
@@ -211,6 +211,7 @@ return (
        <IconButton edge="start"  color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
        <Typography variant="h6" > News </Typography>
        <Button align="right" onClick={this.handleOpen}  color="inherit"> Login </Button>
+        <Button align="right" onClick={this.handleSnackOpen}  color="inherit"> Login </Button>
        </Toolbar>
        </AppBar>
        {JSON.stringify (this.state)}
