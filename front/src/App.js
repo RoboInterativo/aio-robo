@@ -111,8 +111,8 @@ class App extends React.Component {
       this.handleClose();
      if ( this.state.loaded5) {
 		   if ( ! this.state.result.is_user) {
-      this.handleSnackOpen()
-     } 
+      this.handleSnackOpen();
+     };};
     };
     handleLoginChange (event) {
         this.setState({login_name: event.target.value});
