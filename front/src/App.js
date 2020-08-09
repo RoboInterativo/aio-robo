@@ -211,7 +211,7 @@ return (
        <IconButton edge="start"  color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
        <Typography variant="h6" > News </Typography>
        <Button align="right" onClick={this.handleOpen}  color="inherit"> Login </Button>
-        <Button align="right" onClick={this.handleSnackOpen}  color="inherit"> Login </Button>
+       <Button align="right" onClick={this.handleSnackOpen}  color="inherit"> Help </Button>
        </Toolbar>
        </AppBar>
        {JSON.stringify (this.state)}
