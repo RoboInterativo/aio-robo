@@ -163,14 +163,14 @@ let content=
 return (
    <div>
             <div>
-     if ( this.state.loaded5) {
+    
      <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={this.state.login_failed_snack_visible}
         onClose={this.handleSnackClose}
         message="I love snacks"
         //key={vertical + horizontal}
-      />}
+      />
     
        <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.dialog_visible}>
        <DialogTitle id="simple-dialog-title">Авторизация</DialogTitle>

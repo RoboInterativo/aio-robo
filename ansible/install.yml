@@ -54,10 +54,16 @@
       path: '{{  path_to_front }}/../api'
       dest: /tmp/api.tgz 
 
+  - name: Clear build
+    file:
+      path: '{{  path_to_build }}/build/index.html'
+      state:  absent
+      
+
   - name: copy front 1
     copy:
       src: '{{  path_to_front }}/build/index.html'
-      dest:  '{{ path_to_www }}'
+      dest:  '{{ path_to_build }}'
       remote_src: yes
       
 
