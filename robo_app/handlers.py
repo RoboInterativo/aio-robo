@@ -2,7 +2,8 @@ from textwrap import dedent
 import json
 from aiohttp import web , ClientSession
 from aiohttp_security.api import AUTZ_KEY
-from .security import *
+from security import *
+
 from aiohttp_security import (
     remember, forget, authorized_userid,
     check_permission, check_authorized,
