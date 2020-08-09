@@ -109,10 +109,10 @@ class App extends React.Component {
 		 
 	   
       this.handleClose();
-     if ( this.state.loaded5) {
-		   if ( ! this.state.result.is_user) {
-      this.handleSnackOpen();
-     };};
+   //  if ( this.state.loaded5) {
+	//	   if ( ! this.state.result.is_user) {
+    //  this.handleSnackOpen();
+   //  };};
     };
     handleLoginChange (event) {
         this.setState({login_name: event.target.value});
@@ -163,13 +163,14 @@ let content=
 return (
    <div>
             <div>
+     if ( this.state.loaded5) {
      <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={this.login_failed_snack_visible}
+        open={this.result5.is_user}
         onClose={this.handleSnackClose}
         message="I love snacks"
         //key={vertical + horizontal}
-      />
+      />}
     
        <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.dialog_visible}>
        <DialogTitle id="simple-dialog-title">Авторизация</DialogTitle>
