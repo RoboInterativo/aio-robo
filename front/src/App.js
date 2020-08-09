@@ -166,7 +166,7 @@ return (
      if ( this.state.loaded5) {
      <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={this.result5.is_user}
+        open={! this.result5.is_user}
         onClose={this.handleSnackClose}
         message="I love snacks"
         //key={vertical + horizontal}
