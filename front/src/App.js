@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
-import cookie from "react-cookies";
+// import axios from 'axios';
+// import cookie from "react-cookies";
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,197 +31,160 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import { makeStyles } from '@material-ui/core/styles';
+
 import TextField from '@material-ui/core/TextField';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Icon from '@material-ui/core/Icon';
 import Snackbar from '@material-ui/core/Snackbar';
 // End Import  ==========================================================================
 
+import { makeStyles, useTheme } from '@material-ui/core/styles'
 
 
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-            login_name:'',
-            password:'',
-            result: [],
-            dialog_visible:false,
-            login_failed_snack_visible: false
-        
-            
-    };
 
- 
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLoginChange = this.handleLoginChange.bind(this);
-    this.handlePassChange = this.handlePassChange.bind(this);
-     
-    this.handleSnackClose = this.handleSnackClose.bind(this);
-    this.handleSnackOpen = this.handleSnackOpen.bind(this);
-     
-     
- }
-    handleOpen() {
-      this.setState({dialog_visible: true}) ;
-    };
-    
-    handleClose () {
-      this.setState({ login_name:'',
-                       password:'',
-                       dialog_visible: false});
-    };
-    handleSnackOpen() {
-      this.setState({login_failed_snack_visible: true}) ;
-    };
-    
-     handleSnackClose () {
-     this.setState({login_failed_snack_visible: false}) ;
-    };
-     handleLogin () {
-	     let url='/auth' ;
-         const  opts = { login: this.state.login_name,  password: this.state.password        };
-    //this.setState({new_category: ''});
-    axios.defaults.xsrfCookieName = "csrftoken";
-    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-    axios.post(url,opts, {
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFTOKEN': cookie.load("csrftoken")
-      }
+const drawerWidth = 240;
 
-      })
-      .then((response) => {
-        this.setState({
-            loaded5: true,
-            result5: response.data
-        });
-
-      })
-      .catch((error) => {
-
-      })
-		 
-	   
-      this.handleClose();
-     if ( this.state.loaded5) {
-		   if ( ! this.state.result.is_user) {
-      this.handleSnackOpen();
-    };};
-    };
-    handleLoginChange (event) {
-        this.setState({login_name: event.target.value});
-	};
-    handlePassChange (event ) {
-		this.setState({password: event.target.value});
-	}
-
-   
-
-
- componentDidMount() {
-	 	
-
-  
-
-
-}
-
-    render() {
-let  useStyles = makeStyles((theme) => ({
-  form: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-      height: '25ch',
-    },},	
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+  },
+  paper: {
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+},
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
-	
-    marginRight: theme.spacing(2),
+    marginRight: 36,
   },
-  title: {
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9) + 1,
+    },
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
+  content: {
     flexGrow: 1,
+    padding: theme.spacing(3),
   },
 }));
 
-let content=
-<div>
-<p></p>
-</div>
+export default function App() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
 
-
-
-return (
-   <div>
-            <div>
-    
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  return (
+  <div className={classes.root}>
      <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={this.state.login_failed_snack_visible}
-        onClose={this.handleSnackClose}
+
+
         message="I love snacks"
         //key={vertical + horizontal}
       />
-    
-       <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" open={this.state.dialog_visible}>
+
+       <Dialog  aria-labelledby="simple-dialog-title" >
        <DialogTitle id="simple-dialog-title">Авторизация</DialogTitle>
-       
-      
+
+
        <DialogContent>
          <DialogContentText>
             Введите логин и пароль для входа.
           </DialogContentText>
-       <TextField  type="text" value={this.state.login_name} onChange={this.handleLoginChange} required id="standard-required" label="Login" defaultValue="Hello World" />
+       <TextField  type="text"
+
+
+            required id="standard-required"
+            label="Login"
+            defaultValue="Hello World" />
        <TextField
-          value={this.state.password} onChange={this.handlePassChange}
+          // value={this.state.password} onChange={this.handlePassChange}
           required   id="standard-password-input"
           label="Password"
-         
-         
+
+
           type="password"
-          autoComplete="current-password"   />  
-      
-       
+          autoComplete="current-password"   />
+
+
        </DialogContent>
        <DialogActions>
-       <Button onClick={this.handleLogin}
+       <Button
         variant="contained"
         color="primary"
-      
+
         startIcon={<LockOpenIcon />}      >
         LOGIN
        </Button>
-      
-     
+
+
          </DialogActions>
-        
+
        </Dialog>
-      </div>
+
        <AppBar position="static">
        <Toolbar>
        <IconButton edge="start"  color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
        <Typography variant="h6" > News </Typography>
-       <Button align="right" onClick={this.handleOpen}  color="inherit"> Login </Button>
-       <Button align="right" onClick={this.handleSnackOpen}  color="inherit"> Help </Button>
+       <Button align="right"   color="inherit"> Login </Button>
+       <Button align="right"   color="inherit"> Help </Button>
        </Toolbar>
        </AppBar>
-       {JSON.stringify (this.state)}
+
     </div>
 
 
 );
-
-
-    }
 }
-
-export default App;
